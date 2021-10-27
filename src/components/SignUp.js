@@ -8,6 +8,8 @@ function SignUp() {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [pwdError, setPwdError] = useState("");
   const emailInputHandler = (e) => {
     setEmail(e.target.value);
   };
@@ -18,31 +20,50 @@ function SignUp() {
     e.preventDefault();
     console.log(pwd);
     console.log(email);
-    const response = await fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCmrKm9DzSb4KKXMS1xYqNktzIudRi8g6c",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          email: email,
-          password: pwd,
-          returnSecureToken: true,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    if (!response.ok) {
-      alert("something went wrong");
+    if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+      setEmailError("* Enter valid email");
     }
-    const data = await response.json();
-    console.log(data);
-    const IdToken = data.idToken;
-    console.log(IdToken);
-    authCtx.logIn(data.idToken);
-    history.replace("/Welcome");
-    setPwd("");
-    setEmail("");
+    if (email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+      setEmailError("");
+    }
+
+    if (pwd.trim().length < 7) {
+      setPwdError("* Enter password of more than 7 characters");
+    }
+    if (pwd.trim().length >= 7) {
+      setPwdError("");
+    }
+    let isInputValid =
+      email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) &&
+      pwd.trim().length >= 7;
+    if (isInputValid) {
+      const response = await fetch(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCmrKm9DzSb4KKXMS1xYqNktzIudRi8g6c",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: email,
+            password: pwd,
+            returnSecureToken: true,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        alert("something went wrong");
+      } else {
+        const data = await response.json();
+        console.log(data);
+        const IdToken = data.idToken;
+        console.log(IdToken);
+        authCtx.logIn(data.idToken);
+        history.replace("/Welcome");
+      }
+      setPwd("");
+      setEmail("");
+    }
   };
   return (
     <div className={classes.LogIn}>
@@ -56,6 +77,7 @@ function SignUp() {
             value={email}
             onChange={emailInputHandler}
           ></input>
+          <p style={{ color: "red" }}>{emailError}</p>
         </div>
         <div>
           <label htmlFor="#pwd">Password</label>
@@ -65,6 +87,7 @@ function SignUp() {
             value={pwd}
             onChange={pwdInputHandler}
           ></input>
+          <p style={{ color: "red" }}>{pwdError}</p>
         </div>
         <div>
           <button className={classes.button} type="submit">

@@ -29,3 +29,11 @@ a.logOutButton {
   color: red;
   background-color: rgb(236, 222, 222);
 }
+@media (max-width: 500px) {
+  .navBar h3 {
+    padding-left: 0.1rem;
+  }
+  a.logOutButton {
+    margin-right: 0.1rem;
+  }
+}
