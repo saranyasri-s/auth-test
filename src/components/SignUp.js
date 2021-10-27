@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import classes from "./SignUp.module.css";
 import { Link } from "react-router-dom";
+import AuthContext from "./store/AuthContext";
+import { useHistory } from "react-router-dom";
 function SignUp() {
+  const authCtx = useContext(AuthContext);
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const emailInputHandler = (e) => {
@@ -10,10 +14,35 @@ function SignUp() {
   const pwdInputHandler = (e) => {
     setPwd(e.target.value);
   };
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     console.log(pwd);
     console.log(email);
+    const response = await fetch(
+      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCmrKm9DzSb4KKXMS1xYqNktzIudRi8g6c",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          email: email,
+          password: pwd,
+          returnSecureToken: true,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) {
+      alert("something went wrong");
+    }
+    const data = await response.json();
+    console.log(data);
+    const IdToken = data.idToken;
+    console.log(IdToken);
+    authCtx.logIn(data.idToken);
+    history.replace("/Welcome");
+    setPwd("");
+    setEmail("");
   };
   return (
     <div className={classes.LogIn}>
@@ -39,7 +68,6 @@ function SignUp() {
         </div>
         <div>
           <button className={classes.button} type="submit">
-            {" "}
             SignUp
           </button>
         </div>

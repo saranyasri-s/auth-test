@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import classes from "./NavBar.module.css";
 function NavBar() {
   const LogoutHandler = () => {
@@ -8,9 +9,13 @@ function NavBar() {
     <div className={classes.navBar}>
       <h3>AuthTest</h3>
       <div>
-        <button onClick={LogoutHandler} className={classes.logOutButton}>
+        <Link
+          to="/LogIn"
+          onClick={LogoutHandler}
+          className={classes.logOutButton}
+        >
           LogOut
-        </button>
+        </Link>
       </div>
     </div>
   );
