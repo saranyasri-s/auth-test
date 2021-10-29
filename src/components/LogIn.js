@@ -84,6 +84,7 @@ function LogIn() {
               type="text"
               value={email}
               onChange={emailInputHandler}
+              autocomplete="off"
             ></input>
             <p
               style={{
