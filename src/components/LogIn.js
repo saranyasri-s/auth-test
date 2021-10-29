@@ -99,7 +99,7 @@ function LogIn() {
             <label htmlFor="#pwd">Password</label>
             <input
               id="#pwd"
-              type="text"
+              type="password"
               value={pwd}
               onChange={pwdInputHandler}
             ></input>

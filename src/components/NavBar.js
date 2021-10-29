@@ -15,7 +15,7 @@ function NavBar() {
       <div>
         {authCtx.isLoggedIn ? (
           <Link
-            to="/LogIn"
+            to="/SignIn"
             onClick={LogoutHandler}
             className={classes.logOutButton}
           >
@@ -25,7 +25,7 @@ function NavBar() {
           <>
             {" "}
             <NavLink
-              to="/LogIn"
+              to="/SignIn"
               className={classes.button}
               activeClassName={classes.active}
             >

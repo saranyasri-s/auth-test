@@ -55,7 +55,7 @@ function SignUp() {
         alert("something went wrong");
       } else {
         const data = await response.json();
-
+        alert("Sign up successful ,Log in using your credentials");
         history.replace("/SignIn");
       }
       setPwd("");
@@ -93,7 +93,7 @@ function SignUp() {
             <label htmlFor="#pwd">Password</label>
             <input
               id="#pwd"
-              type="text"
+              type="password"
               value={pwd}
               onChange={pwdInputHandler}
             ></input>
@@ -114,7 +114,7 @@ function SignUp() {
           </div>
           <section className={classes.switching}>
             <span>Already have an account?</span>
-            <Link className={classes.link} to="/LogIn">
+            <Link className={classes.link} to="/SignIn">
               LogIn
             </Link>
           </section>

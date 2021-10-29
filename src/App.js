@@ -21,7 +21,7 @@ function App() {
           <Route path="/" exact>
             <p>Log in to add todo</p>
           </Route>
-          <Route path="/LogIn">
+          <Route path="/SignIn">
             <LogIn></LogIn>
           </Route>
           <Route path="/SignUp">
