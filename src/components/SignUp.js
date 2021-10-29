@@ -55,53 +55,72 @@ function SignUp() {
         alert("something went wrong");
       } else {
         const data = await response.json();
-        console.log(data);
-        const IdToken = data.idToken;
-        console.log(IdToken);
-        authCtx.logIn(data.idToken);
-        history.replace("/Welcome");
+
+        history.replace("/SignIn");
       }
       setPwd("");
       setEmail("");
     }
   };
+  const backdropClickHandler = () => {
+    history.replace("/");
+  };
   return (
-    <div className={classes.LogIn}>
-      <form onSubmit={submitHandler} className={classes.form}>
-        <h3>SignUp</h3>
-        <div>
-          <label htmlFor="#email">Email</label>
-          <input
-            id="#email"
-            type="text"
-            value={email}
-            onChange={emailInputHandler}
-          ></input>
-          <p style={{ color: "red" }}>{emailError}</p>
-        </div>
-        <div>
-          <label htmlFor="#pwd">Password</label>
-          <input
-            id="#pwd"
-            type="text"
-            value={pwd}
-            onChange={pwdInputHandler}
-          ></input>
-          <p style={{ color: "red" }}>{pwdError}</p>
-        </div>
-        <div>
-          <button className={classes.button} type="submit">
-            SignUp
-          </button>
-        </div>
-        <div className={classes.switching}>
-          <p>Already have an account?</p>
-          <Link className={classes.link} to="/LogIn">
-            LogIn
-          </Link>
-        </div>
-      </form>
-    </div>
+    <>
+      <div className={classes.backdrop} onClick={backdropClickHandler}></div>
+      <div className={classes.LogIn}>
+        <form onSubmit={submitHandler} className={classes.form}>
+          <h3>Sign Up</h3>
+          <div>
+            <label htmlFor="#email">Email</label>
+            <input
+              id="#email"
+              type="text"
+              value={email}
+              onChange={emailInputHandler}
+            ></input>
+            <p
+              style={{
+                color: "red",
+                margin: "0.1rem 0 1rem 0",
+                textAlign: "left",
+              }}
+            >
+              {emailError}
+            </p>
+          </div>
+          <div>
+            <label htmlFor="#pwd">Password</label>
+            <input
+              id="#pwd"
+              type="text"
+              value={pwd}
+              onChange={pwdInputHandler}
+            ></input>
+            <p
+              style={{
+                color: "red",
+                margin: "0.1rem 0 1rem 0",
+                textAlign: "left",
+              }}
+            >
+              {pwdError}
+            </p>
+          </div>
+          <div>
+            <button className={classes.button} type="submit">
+              Sign Up
+            </button>
+          </div>
+          <section className={classes.switching}>
+            <span>Already have an account?</span>
+            <Link className={classes.link} to="/LogIn">
+              LogIn
+            </Link>
+          </section>
+        </form>
+      </div>
+    </>
   );
 }
 

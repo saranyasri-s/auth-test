@@ -1,4 +1,4 @@
-.LogIn {
+/* .LogIn {
   width: 50%;
   margin: 1rem auto;
   border: 2px solid brown;
@@ -55,5 +55,88 @@
 @media (max-width: 500px) {
   .LogIn {
     width: 90%;
+  }
+} */
+.LogIn {
+  width: 40%;
+  margin: 1rem 0 1.7rem 0;
+  padding: 0.3rem 0.9rem;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 1rem;
+  background-color: #ffffff;
+  position: fixed;
+  z-index: 5;
+  top: 18%;
+  left: 30%;
+}
+
+.LogIn h3 {
+  margin: 0 0 1.7rem 0;
+  text-align: left;
+  color: rgb(78, 77, 77);
+  font-size: 1.5rem;
+}
+.LogIn div {
+  display: flex;
+  flex-flow: column;
+}
+.LogIn div label {
+  margin: 0 0 0.6rem 0;
+  font-weight: bold;
+  color: #7e7c7c;
+  text-align: left;
+}
+.LogIn div input {
+  color: rgb(56, 56, 56);
+  padding: 0.5rem;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #8080802e;
+  font-size: larger;
+}
+.switching {
+  width: 50%;
+
+  margin: 0.1rem auto;
+}
+
+.button {
+  width: 100%;
+  margin: 0.5rem auto;
+  padding: 0.6rem 0.9rem;
+  border: 2px solid #ff1053;
+  color: white;
+  background-color: #ff1053;
+  border-radius: 5px;
+
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: #d30b43fc;
+}
+.switching {
+  margin: 1rem auto;
+}
+
+.link {
+  color: #ff1053;
+  text-decoration: none;
+}
+.backdrop {
+  position: fixed;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #241e1ed1;
+}
+@media (max-width: 600px) {
+  .LogIn {
+    width: 70%;
+    left: 10%;
   }
 }

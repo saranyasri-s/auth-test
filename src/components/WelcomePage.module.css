@@ -1,5 +1,28 @@
-.WelcomePage h3,
-.WelcomePage p {
-  text-align: center;
+.WelcomePage {
   color: rgb(42 139 29);
+  width: 60%;
+  position: fixed;
+  z-index: 5;
+  top: 30%;
+  left: 20%;
+  margin: 3rem auth;
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 10px;
+  box-shadow: 3px 3px 1px 1px rgb(24 17 17 / 48%);
+}
+
+.WelcomePage p {
+  color: rgb(2, 24, 1);
+  font-size: larger;
+  font-weight: bold;
+}
+.WelcomePage input {
+  padding: 0.5rem;
+  outline: none;
+  border: 2px solid rgba(128, 128, 128, 0.198);
+  border-radius: 5px;
+  margin: 1rem;
+  font-size: larger;
+  background-color: #fa80726b;
 }
